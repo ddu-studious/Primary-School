@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="score">得分：{{score}}</view>
+  <view class="llk-area">
+    <view class="llk-list">
+      <view class="llk-word" wx:for="{{wordList}}" wx:key="word" bindtap="selectWord" data-word="{{item.word}}" style="background:{{matched.includes(item.word)?'#e0ffe0':'#fff'}}">{{item.word}}</view>
+    </view>
+    <view class="llk-list">
+      <view class="llk-pinyin" wx:for="{{pinyinList}}" wx:key="pinyin" bindtap="selectPinyin" data-pinyin="{{item}}">{{item}}</view>
+    </view>
+  </view>
+  <view class="result" wx:if="{{showResult}}">{{result}}</view>
+</view> 

@@ -1,0 +1,82 @@
+/* pages/practice/practice.wxss */
+.container {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.score {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.game-area {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pinyin-display {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pinyin-part {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.play-btn {
+  display: block;
+  width: 80%;
+  margin: 0 auto 20px;
+  padding: 12px 0;
+  background-color: #07c160;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.play-btn.playing {
+  background-color: #ff4d4f;
+  transform: scale(0.95);
+}
+
+.result {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #07c160;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option {
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.option:active {
+  background-color: #e0e0e0;
+  transform: scale(0.98);
+}

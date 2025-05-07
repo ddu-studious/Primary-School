@@ -1,0 +1,32 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.pinyin-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pinyin-item {
+  width: 48%; /* 两列，留2%间隔 */
+  background-color: #f8f8f8;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+@media (min-width: 500px) {
+  .pinyin-item {
+    width: 30%; /* 三列大屏适配 */
+  }
+} 

@@ -1,0 +1,43 @@
+<view class="container">
+    <view class="header">
+        <view class="title">拼音填空</view>
+        <view class="score">得分：{{score}}</view>
+    </view>
+
+    <view class="question-card" wx:if="{{currentQuestion}}">
+        <view class="word">{{currentQuestion.word}}</view>
+        <view class="pinyin-container">
+            <text class="pinyin">{{currentQuestion.pinyin}}</text>
+            <text class="missing">?</text>
+        </view>
+        <view class="options">
+            <view 
+                class="option {{selectedOption === option ? 'selected' : ''}} {{showResult && option === currentQuestion.missing ? 'correct' : ''}} {{showResult && selectedOption === option && option !== currentQuestion.missing ? 'wrong' : ''}}"
+                wx:for="{{currentQuestion.options}}" 
+                wx:key="*this"
+                wx:for-item="option"
+                bindtap="selectOption"
+                data-option="{{option}}">
+                {{option}}
+            </view>
+        </view>
+    </view>
+
+    <view class="feedback" wx:if="{{showResult}}">
+        <view class="feedback-text {{isCorrect ? 'correct' : 'wrong'}}">
+            {{isCorrect ? '回答正确！' : '回答错误，正确答案是：' + currentQuestion.missing}}
+        </view>
+        <button class="next-btn" bindtap="nextQuestion">下一题</button>
+    </view>
+
+    <view class="result" wx:if="{{showFinalResult}}">
+        <view class="result-title">练习完成！</view>
+        <view class="result-score">最终得分：{{score}}</view>
+        <view class="result-stats">
+            <view>总题数：{{totalQuestions}}</view>
+            <view>正确数：{{correctCount}}</view>
+            <view>错误数：{{wrongCount}}</view>
+        </view>
+        <button class="restart-btn" bindtap="restart">重新开始</button>
+    </view>
+</view> 

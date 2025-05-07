@@ -1,0 +1,44 @@
+.container {
+  padding: 40rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+.score {
+  font-size: 32rpx;
+  color: #07c160;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+}
+.audio-area {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.audio-btn {
+  background: #07c160;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 30rpx;
+  padding: 18rpx 60rpx;
+}
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30rpx;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+.option-btn {
+  background: #fff;
+  color: #333;
+  font-size: 36rpx;
+  border-radius: 12rpx;
+  padding: 24rpx 60rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.08);
+  margin-bottom: 10rpx;
+}
+.result {
+  font-size: 32rpx;
+  color: #ff9800;
+  margin-top: 40rpx;
+  text-align: center;
+} 

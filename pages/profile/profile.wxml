@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="profile-title">学习档案</view>
+  <view class="profile-item">累计得分：{{totalScore}}</view>
+  <view class="profile-item">练习次数：{{practiceCount}}</view>
+  <view class="profile-item">错题本：</view>
+  <view class="wrong-list">
+    <view class="wrong-item" wx:for="{{wrongList}}" wx:key="*this">{{item}}</view>
+    <view wx:if="{{wrongList.length === 0}}">暂无错题</view>
+  </view>
+  <button class="clear-btn" bindtap="clearWrongList">清空错题本</button>
+</view> 

@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">整体认读</view>
+    <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">声母</view>
+    <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">韵母</view>
+  </view>
+
+  <view class="content">
+    <view class="pinyin-list" wx:if="{{currentTab === 0}}">
+      <view class="pinyin-item" wx:for="{{wholePinyin}}" wx:for-item="item" wx:for-index="idx" wx:key="pinyin">
+        <view class="pinyin">{{item.pinyin}}</view>
+        <view class="example">{{item.example}}</view>
+        <view class="play-btn {{playing.tab === 0 && playing.index === idx ? 'playing' : ''}}" bindtap="playSound" data-pinyin="{{item.pinyin}}" data-index="{{idx}}">
+          {{playing.tab === 0 && playing.index === idx ? '播放中' : '播放'}}
+        </view>
+      </view>
+    </view>
+
+    <view class="pinyin-list" wx:if="{{currentTab === 1}}">
+      <view class="pinyin-item" wx:for="{{initials}}" wx:for-item="item" wx:for-index="idx" wx:key="pinyin">
+        <view class="pinyin">{{item.pinyin}}</view>
+        <view class="example">{{item.example}}</view>
+        <view class="play-btn {{playing.tab === 1 && playing.index === idx ? 'playing' : ''}}" bindtap="playSound" data-pinyin="{{item.pinyin}}" data-index="{{idx}}">
+          {{playing.tab === 1 && playing.index === idx ? '播放中' : '播放'}}
+        </view>
+      </view>
+    </view>
+
+    <view class="pinyin-list" wx:if="{{currentTab === 2}}">
+      <view class="pinyin-item" wx:for="{{finals}}" wx:for-item="item" wx:for-index="idx" wx:key="pinyin">
+        <view class="pinyin">{{item.pinyin}}</view>
+        <view class="example">{{item.example}}</view>
+        <view class="play-btn {{playing.tab === 2 && playing.index === idx ? 'playing' : ''}}" bindtap="playSound" data-pinyin="{{item.pinyin}}" data-index="{{idx}}">
+          {{playing.tab === 2 && playing.index === idx ? '播放中' : '播放'}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

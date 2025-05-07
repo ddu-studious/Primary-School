@@ -1,0 +1,28 @@
+<!--pages/practice/practice.wxml-->
+<view class="container">
+  <view class="score">得分: {{score}}</view>
+  
+  <view class="game-area">
+    <view class="pinyin-display">
+      <view class="pinyin-part">{{shengmu}}</view>
+      <view class="pinyin-part">{{yunmu}}</view>
+    </view>
+
+    <view class="play-btn {{isPlaying ? 'playing' : ''}}" bindtap="playPinyin">
+      {{isPlaying ? '播放中' : '播放拼音'}}
+    </view>
+
+    <view class="result" wx:if="{{showResult}}">
+      {{result}}
+    </view>
+
+    <view class="options">
+      <view class="option" bindtap="checkAnswer" data-answer="{{shengmu + yunmu}}">
+        {{shengmu + yunmu}}
+      </view>
+      <view class="option" bindtap="checkAnswer" data-answer="{{yunmu + shengmu}}">
+        {{yunmu + shengmu}}
+      </view>
+    </view>
+  </view>
+</view>
