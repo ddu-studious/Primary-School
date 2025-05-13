@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="level-info">关卡：{{level}} / {{totalLevels}}</view>
+  <view class="score">得分：{{score}}</view>
+  <view class="progress">进度：{{currentIndex + 1}} / {{questions.length}}</view>
+  <view class="question">当前拼音：{{currentQuestion}}</view>
+  <view class="options">
+    <button class="option-btn" wx:for="{{options}}" wx:key="*this" data-pinyin="{{item}}" bindtap="choose">{{item}}</button>
+  </view>
+  <view class="result" wx:if="{{showResult}}">{{result}}</view>
+  <view class="passed" wx:if="{{passed}}">
+    <view>恭喜通关！</view>
+    <button class="next-btn" bindtap="nextLevel">下一关</button>
+  </view>
+  <view class="failed" wx:if="{{failed}}">
+    <view>闯关失败</view>
+    <button class="retry-btn" bindtap="retry">重试本关</button>
+  </view>
+</view> 

@@ -1,2 +1,58 @@
 <!--pages/game/game.wxml-->
-<text>pages/game/game.wxml</text>
+<view class="container">
+  <view class="score">得分：{{score}}</view>
+  <view class="game-type-bar">
+    <button wx:for="{{gameTypes}}" wx:key="*this" data-index="{{index}}" bindtap="switchGame" class="type-btn {{gameType === item ? 'active' : ''}}">{{item}}</button>
+  </view>
+  <!-- 难度选择按钮组 -->
+  <view class="difficulty-btn-bar" wx:if="{{gameType === '找不同'}}">
+    <button wx:for="{{difficultyList}}" wx:key="{{item.label}}" data-index="{{index}}" bindtap="switchDifficultyBtn" class="diff-btn2 {{difficultyLabel === item.label ? 'active' : ''}}">
+      {{item.label}}
+      <text wx:if="{{difficultyLabel === item.label}}">({{level - item.min + 1}}/{{item.max - item.min + 1}})</text>
+    </button>
+  </view>
+  <!-- 等级选择，仅找不同显示 -->
+  <view class="level-bar" wx:if="{{gameType === '找不同'}}">
+    <view class="difficulty-label big-label">难度：{{difficultyLabel}}
+      <text class="help-btn" bindtap="showHelp">？</text>
+    </view>
+    <button wx:for="{{Array(maxLevel).fill(0)}}" wx:key="{{index}}" data-level="{{index+1}}" bindtap="switchLevel" class="level-btn {{level == (index+1) ? 'active' : ''}}">{{index+1}}级</button>
+  </view>
+  <!-- 找不同 -->
+  <view wx:if="{{gameType === '找不同'}}">
+    <view class="matrix-center">
+      <view class="desc main-desc">在下方拼音中找出不同的一个</view>
+      <view class="matrix">
+        <block wx:for="{{matrixRows}}" wx:key="row" wx:for-index="row">
+          <view class="matrix-row">
+            <block wx:for="{{matrixCols}}" wx:key="col" wx:for-index="col">
+              <button class="option-btn animated-btn {{optionActiveIndex === (row*matrixCols+col) ? 'active' : ''}}" data-index="{{(row*matrixCols)+col}}" bindtap="chooseDiff" style="width:{{cellWidth}}px;height:{{cellHeight}}px;font-size:{{cellFontSize}}px;">{{options[(row*matrixCols)+col]}}</button>
+            </block>
+          </view>
+        </block>
+      </view>
+      <view class="result" wx:if="{{showResult}}">{{result}}</view>
+      <button class="next-btn" bindtap="nextFindDiff" wx:if="{{showResult}}">下一题</button>
+    </view>
+  </view>
+  <!-- 消消乐 -->
+  <view wx:if="{{gameType === '消消乐'}}">
+    <view class="desc">点击任意一个拼音，消除所有相同拼音得分</view>
+    <view class="grid">
+      <view class="grid-item grid-3d {{gridActiveIndex === index ? 'active' : ''}} {{gridShakeIndex === index ? 'shake' : ''}}" wx:for="{{grid}}" wx:key="{{index}}" data-index="{{index}}" bindtap="tapGrid">{{item}}</view>
+    </view>
+    <view class="result" wx:if="{{showResult}}">{{result}}</view>
+    <button class="next-btn" bindtap="nextXiaoXiaoLe" wx:if="{{showResult}}">下一题</button>
+  </view>
+  <view wx:if="{{showHelpModal}}" class="modal-mask">
+    <view class="modal-content">
+      <view class="modal-title">难度说明</view>
+      <view class="modal-body">
+        <view>简单：2×2 ~ 3×3，拼音差异明显，适合新手。</view>
+        <view>普通：4×3 ~ 5×4，拼音相似度提升，适合进阶。</view>
+        <view>困难：5×5 ~ 6×6，拼音极为相近，挑战高阶。</view>
+      </view>
+      <button class="modal-close" bindtap="closeHelp">关闭</button>
+    </view>
+  </view>
+</view>

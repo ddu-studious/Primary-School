@@ -1,11 +1,11 @@
 <view class="container">
   <view class="score">得分：{{score}}</view>
-  <view class="chain-area">
-    <view class="chain-list">
-      <view class="chain-item" wx:for="{{chainList}}" wx:key="pinyin">{{item.word}}({{item.pinyin}})</view>
-    </view>
-    <input class="input" placeholder="请输入下一个拼音" value="{{userInput}}" bindinput="onInput" />
-    <button class="submit-btn" bindtap="submit">提交</button>
-    <view class="result" wx:if="{{showResult}}">{{result}}</view>
+  <view class="current">当前拼音：{{current}}</view>
+  <view class="chain-list">
+    <text wx:for="{{chainList}}" wx:key="*this">{{item}} </text>
   </view>
+  <input class="input" placeholder="请输入下一个拼音" value="{{inputValue}}" bindinput="onInput"/>
+  <button class="submit-btn" bindtap="submit" wx:if="!gameOver">提交</button>
+  <view class="result" wx:if="{{showResult}}">{{result}}</view>
+  <button class="restart-btn" bindtap="nextGame" wx:if="gameOver">重新开始</button>
 </view> 

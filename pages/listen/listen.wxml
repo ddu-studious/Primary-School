@@ -1,1 +1,10 @@
- 
+<view class="container">
+  <view class="score">得分：{{score}}</view>
+  <view class="audio-area">
+    <button class="audio-btn" bindtap="playAudio">播放拼音</button>
+  </view>
+  <view class="options">
+    <button class="option-btn" wx:for="{{options}}" wx:key="*this" data-word="{{item}}" bindtap="choose">{{item}}</button>
+  </view>
+  <view class="result" wx:if="{{showResult}}">{{result}}</view>
+</view> 

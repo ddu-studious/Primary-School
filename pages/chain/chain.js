@@ -1,69 +1,65 @@
-const chainData = [
-  { word: '妈', pinyin: 'mā' },
-  { word: '马', pinyin: 'mǎ' },
-  { word: '花', pinyin: 'huā' },
-  { word: '鱼', pinyin: 'yú' },
-  { word: '书', pinyin: 'shū' },
-  { word: '鸟', pinyin: 'niǎo' },
-  { word: '羊', pinyin: 'yáng' },
-  { word: '鹅', pinyin: 'é' },
-  { word: '鹅', pinyin: 'é' },
-  { word: '鹅', pinyin: 'é' }
-];
-
-function getRandomItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+const { validPinyin } = require('../../data/pinyin');
 
 Page({
   data: {
-    current: {},
-    userInput: '',
+    chainList: [], // 已接龙拼音
+    current: '',   // 当前拼音
+    inputValue: '',
     score: 0,
     showResult: false,
     result: '',
-    chainList: []
+    gameOver: false
   },
 
   onLoad() {
-    this.startChain();
+    this.startGame();
   },
 
-  startChain() {
-    const first = getRandomItem(chainData);
+  startGame() {
+    // 随机选一个合法拼音作为起点
+    const start = validPinyin[Math.floor(Math.random() * validPinyin.length)];
     this.setData({
-      current: first,
-      userInput: '',
+      chainList: [start],
+      current: start,
+      inputValue: '',
+      score: 0,
       showResult: false,
-      chainList: [first]
+      result: '',
+      gameOver: false
     });
   },
 
   onInput(e) {
-    this.setData({ userInput: e.detail.value });
+    this.setData({ inputValue: e.detail.value });
   },
 
   submit() {
-    const last = this.data.chainList[this.data.chainList.length - 1];
-    const user = this.data.userInput.trim();
-    // 判断用户输入的拼音首字母是否等于上一个拼音的末字母
-    if (user && user[0] === last.pinyin[last.pinyin.length - 1]) {
-      const next = chainData.find(item => item.pinyin === user);
-      if (next) {
-        this.setData({
-          chainList: this.data.chainList.concat(next),
-          current: next,
-          userInput: '',
-          score: this.data.score + 10,
-          showResult: true,
-          result: '接龙正确！'
-        });
-        return;
-      }
+    const { inputValue, current, chainList, score } = this.data;
+    if (!inputValue) return;
+    // 校验拼音合法性和接龙规则：首字母等于上一个拼音最后一个字母
+    if (
+      validPinyin.includes(inputValue) &&
+      inputValue[0] === current[current.length - 1] &&
+      !chainList.includes(inputValue)
+    ) {
+      this.setData({
+        chainList: chainList.concat(inputValue),
+        current: inputValue,
+        inputValue: '',
+        score: score + 10,
+        showResult: true,
+        result: '接龙成功！'
+      });
+    } else {
+      this.setData({
+        showResult: true,
+        result: '接龙失败，游戏结束！',
+        gameOver: true
+      });
     }
-    this.setData({
-      showResult: true,
-      result: '接龙错误，请重新输入！'
-    });
+  },
+
+  nextGame() {
+    this.startGame();
   }
 }); 
