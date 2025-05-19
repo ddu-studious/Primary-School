@@ -38,17 +38,36 @@
   padding: 40rpx;
   border-radius: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.menu-item:active {
-  transform: scale(0.98);
+.menu-item:active, .menu-item.active {
+  transform: scale(0.98) translateY(-4rpx);
+  box-shadow: 0 8rpx 32rpx #b7f5d8, 0 2rpx 8rpx #34d399;
+  border: 2rpx solid #07c160;
+}
+
+.menu-item:hover {
+  box-shadow: 0 12rpx 36rpx #b7f5d8, 0 4rpx 12rpx #34d399;
+  border: 2rpx solid #07c160;
+  transform: scale(1.03) translateY(-6rpx);
 }
 
 .menu-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 10px;
+  width: 90rpx;
+  height: 90rpx;
+  margin-bottom: 16rpx;
+  border-radius: 18rpx;
+  box-shadow: 0 2rpx 8rpx #b7f5d8;
+  background: #e0f7fa;
+  animation: iconFloat 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes iconFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8rpx); }
 }
 
 .menu-text {
@@ -66,4 +85,52 @@
 .tips {
   color: #666;
   font-size: 16px;
+}
+
+.bg-svg {
+  position: fixed;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.bg-canvas {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.animated-title {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #07c160;
+  letter-spacing: 4rpx;
+  text-shadow: 0 4rpx 16rpx #b7f5d8;
+  animation: bounceTitle 1.2s infinite alternate;
+}
+
+@keyframes bounceTitle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12rpx); }
+}
+
+.animated-card {
+  animation: cardPop 0.8s cubic-bezier(.68,-0.55,.27,1.55) both;
+  background: linear-gradient(120deg, #fff 80%, #e0f7fa 100%);
+  box-shadow: 0 8rpx 32rpx #b7f5d8, 0 2rpx 8rpx #34d399;
+  border: 2rpx solid #b2ebf2;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.animated-card:active {
+  transform: scale(0.97);
+  box-shadow: 0 2rpx 8rpx #b7f5d8;
+}
+
+@keyframes cardPop {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
 } 

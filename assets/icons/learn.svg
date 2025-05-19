@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- 书本背景 -->
+  <path d="M40 30h100c5.52 0 10 4.48 10 10v100c0 5.52-4.48 10-10 10H40c-5.52 0-10-4.48-10-10V40c0-5.52 4.48-10 10-10z" fill="#4A90E2"/>
+  <!-- 书本内页 -->
+  <path d="M50 50h80v80H50z" fill="#FFFFFF"/>
+  <!-- 拼音字母 -->
+  <text x="90" y="100" font-family="Arial" font-size="48" fill="#4A90E2" text-anchor="middle">a</text>
+  <text x="90" y="140" font-family="Arial" font-size="48" fill="#4A90E2" text-anchor="middle">o</text>
+</svg> 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- 铅笔形状 -->
+  <path d="M140 40l-100 100c-2 2-2 5 0 7l20 20c2 2 5 2 7 0l100-100c2-2 2-5 0-7l-20-20c-2-2-5-2-7 0z" fill="#50E3C2"/>
+  <!-- 铅笔阴影 -->
+  <path d="M140 40l-100 100c-2 2-2 5 0 7l20 20c2 2 5 2 7 0l100-100c2-2 2-5 0-7l-20-20c-2-2-5-2-7 0z" fill="#000000" opacity="0.1"/>
+  <!-- 拼音字母 -->
+  <text x="90" y="100" font-family="Arial" font-size="48" fill="#FFFFFF" text-anchor="middle">b</text>
+  <text x="90" y="140" font-family="Arial" font-size="48" fill="#FFFFFF" text-anchor="middle">p</text>
+</svg> 

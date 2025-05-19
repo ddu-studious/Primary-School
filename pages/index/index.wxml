@@ -1,22 +1,21 @@
 <view class="container">
+  <!-- 动态气泡/拼音字母漂浮背景canvas -->
+  <image src="/assets/icons/bg.svg" class="bg-svg"></image>
+  <canvas type="2d" class="bg-canvas" canvas-id="bgCanvas" id="bgCanvas"></canvas>
   <view class="header">
-    <icon type="logo" size="120" color="#07c160"></icon>
-    <view class="title">拼音小达人</view>
+    <view class="title animated-title">拼音小达人</view>
   </view>
-  
   <view class="menu">
-    <navigator url="/pages/learn/learn" class="menu-item">
-      <icon type="learn" size="80" color="#07c160"></icon>
+    <navigator url="/pages/learn/learn" class="menu-item animated-card">
+      <image src="/assets/icons/learn.svg" class="menu-icon"></image>
       <view class="menu-text">拼音学习</view>
     </navigator>
-    
-    <navigator url="/pages/practice/practice" class="menu-item">
-      <icon type="practice" size="80" color="#07c160"></icon>
+    <navigator url="/pages/practice/practice" class="menu-item animated-card">
+      <image src="/assets/icons/practice.svg" class="menu-icon"></image>
       <view class="menu-text">拼音练习</view>
     </navigator>
-    
-    <navigator url="/pages/game/game" class="menu-item">
-      <icon type="game" size="80" color="#07c160"></icon>
+    <navigator url="/pages/game/game" class="menu-item animated-card">
+      <image src="/assets/icons/game.svg" class="menu-icon"></image>
       <view class="menu-text">趣味游戏</view>
     </navigator>
   </view>

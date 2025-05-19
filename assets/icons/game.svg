@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- 游戏手柄背景 -->
+  <path d="M40 60c0-11.05 8.95-20 20-20h60c11.05 0 20 8.95 20 20v60c0 11.05-8.95 20-20 20H60c-11.05 0-20-8.95-20-20V60z" fill="#F5A623"/>
+  <!-- 手柄按钮 -->
+  <circle cx="70" cy="90" r="15" fill="#FFFFFF"/>
+  <circle cx="110" cy="90" r="15" fill="#FFFFFF"/>
+  <!-- 拼音字母 -->
+  <text x="90" y="100" font-family="Arial" font-size="48" fill="#FFFFFF" text-anchor="middle">g</text>
+  <text x="90" y="140" font-family="Arial" font-size="48" fill="#FFFFFF" text-anchor="middle">k</text>
+</svg> 
