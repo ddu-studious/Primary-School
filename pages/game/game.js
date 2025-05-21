@@ -1,5 +1,6 @@
 // pages/game/game.js
 // 拼音数据（简化版，可扩展）
+const pinyinData = require('../../data/pinyin.js');
 const pinyinList = [
   'a', 'o', 'e', 'i', 'u', 'ü', 'ai', 'ei', 'ui', 'ao', 'ou', 'iu', 'ie', 'üe', 'er',
   'an', 'en', 'in', 'un', 'ün', 'ang', 'eng', 'ing', 'ong',
@@ -384,7 +385,7 @@ Page({
   playPinyinAudio(pinyin) {
     if (!pinyin) return;
     const audioContext = wx.createInnerAudioContext();
-    audioContext.src = `/assets/audio/pinyin/${pinyin}.mp3`;
+    audioContext.src = `/assets/audio/pinyin/${pinyinData.getAudioPinyin(pinyin)}.mp3`;
     audioContext.play();
   },
 

@@ -110,9 +110,25 @@ Object.keys(initialFinalMap).forEach(initial => {
 // 加入整体认读音节
 wholePinyin.forEach(item => validPinyin.push(item.pinyin));
 
+// 拼音到音频文件名的转换（处理ü的特殊规则）
+function getAudioPinyin(pinyin) {
+  let audioPinyin = pinyin;
+  // j/q/x/y与ü组合时，ü写作u
+  if (/^(j|q|x|y)/.test(audioPinyin)) {
+    audioPinyin = audioPinyin.replace(/ü/g, 'u');
+  } else {
+    audioPinyin = audioPinyin.replace(/ü/g, 'v');
+  }
+  audioPinyin = audioPinyin.replace(/üe/g, 'ue').replace(/ün/g, 'un');
+  // 兼容特殊情况，先替换长的
+  audioPinyin = audioPinyin.replace(/ve/g, 've').replace(/vn/g, 'vn');
+  return audioPinyin;
+}
+
 module.exports = {
     initials,
     finals,
     wholePinyin,
-    validPinyin
+    validPinyin,
+    getAudioPinyin
 }; 

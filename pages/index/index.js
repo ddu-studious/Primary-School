@@ -26,7 +26,7 @@ Page({
     const height = wx.getSystemInfoSync().windowHeight;
     // 气泡/字母动画数据
     const bubbles = [];
-    const pinyinList = ['a','o','e','i','u','ü','ai','ei','ui','ao','ou','iu','ie','üe','er','an','en','in','un','ün','ang','eng','ing','ong','b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s','y','w'];
+    const pinyinList = ['a','o','e','i','u', 'ü', 'v','ai','ei','ui','ao','ou','iu','ie', 'ue', 'üe','ve','er','an','en','in','un', 'ün','vn','ang','eng','ing','ong','b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s','y','w'];
     for(let i=0;i<18;i++){
       const h = Math.floor(Math.random()*360);
       const s = 80, l = 70;

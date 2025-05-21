@@ -30,7 +30,7 @@ Page({
     this.setData({
       playing: { tab, index: idx }
     });
-    audioManager.playPinyin(pinyin);
+    audioManager.playPinyin(pinyinData.getAudioPinyin(pinyin));
     setTimeout(() => {
       this.setData({
         playing: { tab: -1, index: -1 }

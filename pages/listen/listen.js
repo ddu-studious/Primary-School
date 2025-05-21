@@ -1,4 +1,5 @@
 const audioManager = require('../../utils/audio.js');
+const pinyinData = require('../../data/pinyin.js');
 const listenData = [
   { word: '妈', pinyin: 'mā' },
   { word: '爸', pinyin: 'bà' },
@@ -53,7 +54,7 @@ Page({
   },
 
   playAudio() {
-    audioManager.playPinyin(this.data.current.pinyin);
+    audioManager.playPinyin(pinyinData.getAudioPinyin(this.data.current.pinyin));
   },
 
   choose(e) {
