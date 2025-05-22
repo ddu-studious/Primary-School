@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="score">第{{round}}题 / 总分：{{score}}</view>
+  <view class="audio-area">
+    <button class="audio-btn" bindtap="playAudio">播放音频</button>
+  </view>
+  <view class="quiz-area">
+    <view class="input-wrapper">
+      <input class="input" type="text" placeholder="请输入你听到的汉字" value="{{userInput}}" bindinput="onInput" disabled="{{!showMask}}" focus="{{inputFocus}}" />
+      <view class="mask" wx:if="{{showMask}}">
+        <button class="erase-btn" bindtap="onErase">擦除遮罩</button>
+      </view>
+    </view>
+  </view>
+  <view class="result-area" wx:if="{{showResult}}">
+    <view>正确答案：<text class="answer">{{currentWord.word}}</text></view>
+    <view>你的答案：<text class="user">{{userInput}}</text></view>
+    <view wx:if="{{isCorrect}}" class="correct">答对啦！</view>
+    <view wx:if="{{!isCorrect}}" class="wrong">答错了</view>
+    <button class="next-btn" bindtap="nextQuiz">下一题</button>
+  </view>
+</view> 

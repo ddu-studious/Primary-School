@@ -4,12 +4,13 @@
     "pages/learn/learn",
     "pages/practice/practice",
     "pages/game/game",
+    "pages/game/guess-word",
     "pages/fill/fill"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "拼音小达人",
+    "navigationBarTitleText": "学习小达人",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

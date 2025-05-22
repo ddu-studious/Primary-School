@@ -1,6 +1,6 @@
 Page({
   data: {
-    title: '拼音小达人'
+    title: '学习小达人'
   },
   onReady() {
     // hsl转rgb

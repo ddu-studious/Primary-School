@@ -1,0 +1,15 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="58" fill="#FFF8E1" stroke="#FFD54F" stroke-width="4"/>
+  <path d="M35 80 Q30 60 45 55 Q60 50 65 65 Q70 80 55 85 Q40 90 35 80" fill="#FFFDE7" stroke="#FFB300" stroke-width="2"/>
+  <ellipse cx="90" cy="40" rx="10" ry="16" fill="#FFF3E0" stroke="#FF7043" stroke-width="2"/>
+  <path d="M90 24 Q100 40 90 56" stroke="#FF7043" stroke-width="2" fill="none"/>
+  <text x="50" y="70" font-size="28" fill="#FF7043" font-family="Arial, sans-serif">字</text>
+  <path d="M70 30 Q80 20 90 30" stroke="#81D4FA" stroke-width="2" fill="none"/>
+  <circle cx="80" cy="25" r="2" fill="#81D4FA"/>
+  <path d="M30 40 Q20 50 30 60" stroke="#66BB6A" stroke-width="2" fill="none"/>
+  <circle cx="25" cy="50" r="2" fill="#66BB6A"/>
+  <path d="M60 100 Q65 95 70 100" stroke="#FFD54F" stroke-width="2" fill="none"/>
+  <circle cx="65" cy="98" r="2" fill="#FFD54F"/>
+  <text x="80" y="50" font-size="18" fill="#FF7043" font-family="Arial, sans-serif">?</text>
+  <text x="38" y="40" font-size="16" fill="#81D4FA" font-family="Arial, sans-serif">♪</text>
+</svg> 

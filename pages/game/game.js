@@ -42,6 +42,8 @@ const levelMatrix = [
   {rows:6, cols:6}  // 9级
 ];
 
+const audioManager = require('../../utils/audio.js');
+
 Page({
 
   /**
@@ -384,9 +386,7 @@ Page({
   // 播放拼音音频
   playPinyinAudio(pinyin) {
     if (!pinyin) return;
-    const audioContext = wx.createInnerAudioContext();
-    audioContext.src = `/assets/audio/pinyin/${pinyinData.getAudioPinyin(pinyin)}.mp3`;
-    audioContext.play();
+    audioManager.playPinyin(pinyin);
   },
 
   // 动态计算格子宽高（字号固定为28px，字体全局统一）

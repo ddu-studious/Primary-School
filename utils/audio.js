@@ -2,9 +2,17 @@
 const pinyinData = require('../data/pinyin.js');
 let audio = null;
 
-function playPinyin(pinyin, onEnded) {
-  // 使用公共方法转换拼音
-  const audioPinyin = pinyinData.getAudioPinyin(pinyin);
+function playPinyin(pinyin, onEnded, options) {
+  options = options || {};
+  let url = options.url || 'http://127.0.0.1:5000/stream_audio';
+  let data = {};
+  if (options.type === 'chinese') {
+    data = { text: pinyin, tts: 'edgetts' };
+  } else {
+    const audioPinyin = pinyinData.getAudioPinyin(pinyin);
+    data = { pinyin: audioPinyin, tts: 'edgetts' };
+  }
+  console.log(data);
   if (!audio) {
     audio = wx.createInnerAudioContext();
   }
@@ -15,21 +23,18 @@ function playPinyin(pinyin, onEnded) {
   }
   // 先请求接口获取音频流
   wx.request({
-    url: 'http://127.0.0.1:5000/stream_audio',
+    url: url,
     method: 'POST',
     header: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    data: {
-      pinyin: audioPinyin,
-      tts: 'edgetts'
-    },
+    data: data,
     responseType: 'arraybuffer',
     success: function(res) {
       if (res.statusCode === 200 && res.data) {
         // arraybuffer转临时文件
         const fs = wx.getFileSystemManager();
-        const filePath = `${wx.env.USER_DATA_PATH}/${audioPinyin}_${Date.now()}.mp3`;
+        const filePath = `${wx.env.USER_DATA_PATH}/${Date.now()}.mp3`;
         fs.writeFile({
           filePath,
           data: res.data,
@@ -39,17 +44,17 @@ function playPinyin(pinyin, onEnded) {
             audio.play();
           },
           fail: () => {
-            audio.src = `/assets/audio/pinyin/${audioPinyin}.mp3`;
+            audio.src = `/assets/audio/pinyin/${data.pinyin || ''}.mp3`;
             audio.play();
           }
         });
       } else {
-        audio.src = `/assets/audio/pinyin/${audioPinyin}.mp3`;
+        audio.src = `/assets/audio/pinyin/${data.pinyin || ''}.mp3`;
         audio.play();
       }
     },
     fail: function() {
-      audio.src = `/assets/audio/pinyin/${audioPinyin}.mp3`;
+      audio.src = `/assets/audio/pinyin/${data.pinyin || ''}.mp3`;
       audio.play();
     }
   });

@@ -1,6 +1,6 @@
 <view class="container">
   <!-- 动态气泡/拼音字母漂浮背景canvas -->
-  <image src="/assets/icons/bg.svg" class="bg-svg"></image>
+  <image src="/assets/icons/bg.svg" class="bg-svg" mode="aspectFill"></image>
   <canvas type="2d" class="bg-canvas" canvas-id="bgCanvas" id="bgCanvas"></canvas>
   <view class="header">
     <view class="title animated-title">拼音小达人</view>
@@ -18,5 +18,15 @@
       <image src="/assets/icons/game.svg" class="menu-icon"></image>
       <view class="menu-text">趣味游戏</view>
     </navigator>
+    <navigator url="/pages/game/guess-word" class="menu-item animated-card">
+      <image src="/assets/icons/guess-word.svg" class="menu-icon"></image>
+      <view class="menu-text">听音猜字</view>
+    </navigator>
+    <!-- 关于我们
+    <navigator url="/pages/about/about" class="menu-item animated-card">
+      <image src="/assets/icons/about.svg" class="menu-icon"></image>
+      <view class="menu-text">关于我们</view>
+    </navigator>
+    -->
   </view>
-</view> 
+</view>
