@@ -12,7 +12,6 @@ function playPinyin(pinyin, onEnded, options) {
     const audioPinyin = pinyinData.getAudioPinyin(pinyin);
     data = { pinyin: audioPinyin, tts: 'edgetts' };
   }
-  console.log(data);
   if (!audio) {
     audio = wx.createInnerAudioContext();
   }
