@@ -1,9 +1,21 @@
 <view class="container">
+  <view class="user-card" wx:if="{{userInfo}}">
+    <image class="user-bg-decor" src="/assets/icons/bg.svg" mode="aspectFill" />
+    <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" bindtap="onAvatarTap"></image>
+    <view class="user-info">
+      <view class="user-nick">{{userInfo.nickName}}</view>
+      <view class="user-welcome">欢迎回来～</view>
+    </view>
+    <image class="user-decor" src="/assets/icons/star.svg"></image>
+    <view class="user-drawer" wx:if="{{userDrawerVisible}}">
+      <button class="drawer-logout-btn" bindtap="onLogout">退出登录</button>
+    </view>
+  </view>
   <!-- 动态气泡/拼音字母漂浮背景canvas -->
   <image src="/assets/icons/bg.svg" class="bg-svg" mode="aspectFill"></image>
   <canvas type="2d" class="bg-canvas" canvas-id="bgCanvas" id="bgCanvas"></canvas>
   <view class="header">
-    <view class="title animated-title">拼音小达人</view>
+    <view class="title animated-title">学习小达人</view>
   </view>
   <view class="menu">
     <navigator url="/pages/learn/learn" class="menu-item animated-card">

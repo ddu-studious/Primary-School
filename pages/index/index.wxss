@@ -7,6 +7,8 @@
 }
 
 .header {
+  position: relative;
+  top: 98rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +29,8 @@
 }
 
 .menu {
+  position: relative;
+  top: 50rpx;
   display: flex;
   flex-direction: column;
   gap: 40rpx;
@@ -141,4 +145,136 @@
 @keyframes cardPop {
   0% { transform: scale(0.8); opacity: 0.5; }
   100% { transform: scale(1); opacity: 1; }
-} 
+}
+
+.user-card {
+  position: fixed;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255,253,228,0.82) 0%, rgba(255,231,250,0.82) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8rpx 32rpx rgba(255, 193, 7, 0.10), 0 0 0 6rpx #ffe08233 inset;
+  border-radius: 36rpx;
+  padding: 20rpx 44rpx 20rpx 20rpx;
+  min-width: 340rpx;
+  max-width: 92vw;
+  border: 3rpx solid #ffe082;
+  overflow: visible;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 4rpx solid #ffd600;
+  box-shadow: 0 4rpx 16rpx #ffe082, 0 0 0 8rpx #fffde4;
+  margin-right: 24rpx;
+  background: #fff;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-nick {
+  font-size: 36rpx;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff9800 20%, #ffd600 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 4rpx;
+}
+
+.user-welcome {
+  font-size: 26rpx;
+  color: #888;
+  font-family: 'Comic Sans MS', '幼圆', cursive;
+}
+
+.user-decor {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 18rpx;
+  top: -16rpx;
+  animation: star-bounce 1.6s infinite;
+  z-index: 2;
+}
+
+@keyframes star-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}
+
+.user-bg-decor {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 120rpx;
+  height: 60rpx;
+  opacity: 0.18;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  z-index: 10;
+  background: linear-gradient(90deg, #b2ebf2 0%, #ffecb3 100%);
+  color: #ff9800;
+  font-size: 22rpx;
+  font-weight: bold;
+  border: none;
+  border-radius: 20rpx;
+  padding: 8rpx 24rpx;
+  opacity: 0.82;
+  box-shadow: 0 2rpx 8rpx #ffe082;
+  transition: background 0.2s, opacity 0.2s;
+}
+.logout-btn:active {
+  opacity: 1;
+  background: linear-gradient(90deg, #ffecb3 0%, #b2ebf2 100%);
+}
+
+.user-drawer {
+  position: absolute;
+  left: 0;
+  top: 90rpx;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  animation: drawerDown 0.25s cubic-bezier(.68,-0.55,.27,1.55);
+  z-index: 20;
+}
+@keyframes drawerDown {
+  0% { opacity: 0; transform: translateY(-20rpx) scaleY(0.8); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+.drawer-logout-btn {
+  background: linear-gradient(90deg, #ffecb3 0%, #b2ebf2 100%);
+  color: #ff9800;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  border-radius: 28rpx;
+  padding: 18rpx 60rpx;
+  box-shadow: 0 4rpx 16rpx #ffe082;
+  margin-top: 8rpx;
+  opacity: 0.96;
+  transition: background 0.2s, opacity 0.2s;
+}
+.drawer-logout-btn:active {
+  opacity: 1;
+  background: linear-gradient(90deg, #b2ebf2 0%, #ffecb3 100%);
+}

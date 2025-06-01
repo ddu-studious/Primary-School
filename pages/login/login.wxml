@@ -1,0 +1,5 @@
+<view class="login-container">
+  <view class="login-title">欢迎使用学习小达人</view>
+  <view class="login-desc">请先授权登录后使用全部功能</view>
+  <button class="login-btn" open-type="getUserProfile" bindtap="onGetUserProfile">微信一键登录</button>
+</view> 

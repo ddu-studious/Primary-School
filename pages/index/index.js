@@ -1,6 +1,28 @@
 Page({
   data: {
-    title: '学习小达人'
+    title: '学习小达人',
+    userInfo: null,
+    userDrawerVisible: false
+  },
+  onLoad() {
+    let userInfo = wx.getStorageSync('userInfo');
+    console.log('[首页] 读取本地userInfo:', userInfo);
+    if (typeof userInfo === 'string') {
+      try {
+        userInfo = JSON.parse(userInfo);
+        console.log('[首页] userInfo字符串已转对象:', userInfo);
+      } catch (e) {
+        console.warn('[首页] userInfo解析失败:', e);
+        userInfo = null;
+      }
+    }
+    if (!userInfo || !userInfo.avatarUrl || !userInfo.nickName) {
+      console.warn('[首页] userInfo无效，跳转登录页');
+      wx.redirectTo({ url: '/pages/login/login' });
+    } else {
+      console.log('[首页] userInfo有效，展示用户信息:', userInfo);
+      this.setData({ userInfo });
+    }
   },
   onReady() {
     // hsl转rgb
@@ -22,8 +44,17 @@ Page({
     }
     // p5.js风格气泡/拼音字母漂浮动画
     const ctx = wx.createCanvasContext('bgCanvas', this);
-    const width = wx.getSystemInfoSync().windowWidth;
-    const height = wx.getSystemInfoSync().windowHeight;
+    let width = 375, height = 667;
+    if (wx.getWindowInfo) {
+      const info = wx.getWindowInfo();
+      width = info.windowWidth;
+      height = info.windowHeight;
+    } else {
+      // 兼容老版本
+      const info = wx.getSystemInfoSync();
+      width = info.windowWidth;
+      height = info.windowHeight;
+    }
     // 气泡/字母动画数据
     const bubbles = [];
     const pinyinList = ['a','o','e','i','u', 'ü', 'v','ai','ei','ui','ao','ou','iu','ie', 'ue', 'üe','ve','er','an','en','in','un', 'ün','vn','ang','eng','ing','ong','b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s','y','w'];
@@ -82,5 +113,13 @@ Page({
       setTimeout(draw, 40);
     }
     draw();
+  },
+  onAvatarTap() {
+    this.setData({ userDrawerVisible: !this.data.userDrawerVisible });
+  },
+  onLogout() {
+    wx.removeStorageSync('userInfo');
+    this.setData({ userDrawerVisible: false });
+    wx.reLaunch({ url: '/pages/login/login' });
   }
 }); 

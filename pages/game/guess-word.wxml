@@ -3,19 +3,96 @@
   <view class="audio-area">
     <button class="audio-btn" bindtap="playAudio">播放音频</button>
   </view>
+  
+  <!-- 输入方式切换 -->
+  <view class="input-mode-switch">
+    <button class="mode-btn {{inputMode === 'keyboard' ? 'active' : ''}}" bindtap="switchToKeyboard">键盘输入</button>
+    <button class="mode-btn {{inputMode === 'handwrite' ? 'active' : ''}}" bindtap="switchToHandwrite">手写输入</button>
+  </view>
+
   <view class="quiz-area">
-    <view class="input-wrapper">
+    <!-- 键盘输入区域 -->
+    <view class="input-wrapper" wx:if="{{inputMode === 'keyboard'}}">
+      <view class="input-display" wx:if="{{userInput}}">{{userInput}}</view>
       <input class="input" type="text" placeholder="请输入你听到的汉字" value="{{userInput}}" bindinput="onInput" disabled="{{!showMask}}" focus="{{inputFocus}}" />
       <view class="mask" wx:if="{{showMask}}">
         <button class="erase-btn" bindtap="onErase">擦除遮罩</button>
       </view>
     </view>
+
+    <!-- 手写输入区域 -->
+    <view class="handwrite-wrapper" wx:if="{{inputMode === 'handwrite'}}">
+      <!-- 识别器选择区域 -->
+      <view class="recognizer-selector">
+        <view class="recognizer-info">
+          <text class="current-recognizer">当前：{{currentRecognizerLabel}}</text>
+          <button class="selector-btn" bindtap="showRecognizerOptions">切换识别器</button>
+          <button class="stats-btn" bindtap="viewRecognitionStats">查看统计</button>
+        </view>
+      </view>
+
+      <view class="handwrite-input-display">
+        <text class="input-text">{{userInput || '请在下方画板上手写汉字'}}</text>
+        <view class="mask" wx:if="{{showMask}}">
+          <button class="erase-btn" bindtap="onErase">擦除遮罩</button>
+        </view>
+      </view>
+      
+      <view class="canvas-container">
+        <canvas 
+          type="2d" 
+          id="handwriteCanvas" 
+          class="handwrite-canvas"
+          bindtouchstart="onCanvasStart"
+          bindtouchmove="onCanvasMove" 
+          bindtouchend="onCanvasEnd"
+          disable-scroll="true"
+        ></canvas>
+        
+        <view class="canvas-controls">
+          <button class="control-btn" bindtap="clearCanvas">清除</button>
+          <button class="control-btn primary" bindtap="recognizeHandwriting">识别</button>
+          <button class="control-btn" bindtap="undoStroke">撤销</button>
+        </view>
+        
+        <!-- 识别状态显示 -->
+        <view class="recognize-status" wx:if="{{recognizing}}">
+          <text>正在识别...</text>
+        </view>
+      </view>
+    </view>
   </view>
+
   <view class="result-area" wx:if="{{showResult}}">
     <view>正确答案：<text class="answer">{{currentWord.word}}</text></view>
     <view>你的答案：<text class="user">{{userInput}}</text></view>
     <view wx:if="{{isCorrect}}" class="correct">答对啦！</view>
     <view wx:if="{{!isCorrect}}" class="wrong">答错了</view>
     <button class="next-btn" bindtap="nextQuiz">下一题</button>
+  </view>
+
+  <!-- 识别器选择弹窗 -->
+  <view class="recognizer-modal" wx:if="{{showRecognizerSelector}}" bindtap="hideRecognizerSelector">
+    <view class="modal-content" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">选择识别器</text>
+        <button class="close-btn" bindtap="hideRecognizerSelector">×</button>
+      </view>
+      <view class="recognizer-list">
+        <view 
+          class="recognizer-item {{recognizerType === item.value ? 'selected' : ''}}" 
+          wx:for="{{recognizerOptions}}" 
+          wx:key="value"
+          data-value="{{item.value}}"
+          bindtap="onRecognizerChange"
+        >
+          <view class="item-header">
+            <text class="item-label">{{item.label}}</text>
+            <view class="item-check" wx:if="{{recognizerType === item.value}}">✓</view>
+          </view>
+          <text class="item-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view> 

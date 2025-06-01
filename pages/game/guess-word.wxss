@@ -1,130 +1,495 @@
 /* pages/game/guess-word.wxss */
 .container {
-  padding: 32rpx 24rpx;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #f8fafc 0%, #e0f7fa 100%);
+  padding: 20rpx;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+
 .score {
+  text-align: center;
   font-size: 32rpx;
-  color: #ff9800;
-  margin-bottom: 32rpx;
+  color: white;
+  margin-bottom: 30rpx;
   font-weight: bold;
 }
+
 .audio-area {
-  margin-bottom: 40rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
 }
+
 .audio-btn {
-  background: linear-gradient(180deg, #fffbe6 0%, #ffe0b2 20%, #ffb199 90%);
+  background: #ff6b6b;
+  color: white;
   border: none;
-  border-radius: 32rpx;
-  box-shadow: 0 8rpx 32rpx rgba(255, 152, 0, 0.22), 0 2rpx 0 #fffbe6 inset, 0 1rpx 0 #fff inset, 0 1rpx 8rpx #ffd180 inset;
-  color: #fff;
-  font-size: 32rpx;
-  font-weight: bold;
-  padding: 20rpx 60rpx;
-  margin-bottom: 16rpx;
-  transition: box-shadow 0.2s, filter 0.2s;
-  filter: brightness(1.10) saturate(1.25);
-  position: relative;
-  overflow: hidden;
+  border-radius: 50rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  box-shadow: 0 8rpx 16rpx rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
 }
-.audio-btn::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 40%;
-  border-radius: 32rpx 32rpx 0 0;
-  background: linear-gradient(180deg,rgba(255,255,255,0.35),rgba(255,255,255,0));
-  pointer-events: none;
-}
+
 .audio-btn:active {
-  filter: brightness(0.97) saturate(1.1);
-  box-shadow: 0 2rpx 8rpx rgba(255, 152, 0, 0.12);
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 8rpx rgba(255, 107, 107, 0.3);
 }
+
+/* 输入模式切换 */
+.input-mode-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30rpx;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50rpx;
+  padding: 8rpx;
+}
+
+.mode-btn {
+  flex: 1;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 40rpx;
+  padding: 16rpx 24rpx;
+  font-size: 28rpx;
+  margin: 0 8rpx;
+  transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+  background: white;
+  color: #667eea;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
 .quiz-area {
-  width: 80vw;
-  max-width: 500rpx;
-  margin-bottom: 32rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
 }
+
+/* 键盘输入样式 */
 .input-wrapper {
   position: relative;
-  width: 100%;
-  height: 80rpx;
+  background: white;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 240rpx;
+  display: flex;
+  flex-direction: column;
 }
+
 .input {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  font-size: 36rpx;
-  border-radius: 24rpx;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
-  border: 2rpx solid #b3e5fc;
-  color: #333;
-  z-index: 1;
   position: relative;
-}
-.mask {
-  position: absolute;
-  left: 8rpx; top: 168rpx; right: 8rpx; bottom: 8rpx;
-  background: rgba(200,200,200,0.35);
-  border-radius: 18rpx;
+  width: 100%;
+  padding: 30rpx;
+  font-size: 32rpx;
+  border: none;
+  background: transparent;
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 1;
+  color: #666;
+  flex: 1;
+  min-height: 120rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  backdrop-filter: blur(6rpx);
-  pointer-events: auto;
-  box-sizing: border-box;
 }
-.erase-btn {
-  background: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%);
-  color: #fff;
+
+/* 显示用户输入内容的区域 */
+.input-display {
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  right: 8rpx;
+  height: 60rpx;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 245, 0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2196F3;
+  border-radius: 16rpx;
+  z-index: 3;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  border: 2rpx solid #e3f2fd;
+}
+
+/* 手写输入样式 */
+.handwrite-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 识别器选择区域 */
+.recognizer-selector {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.recognizer-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.current-recognizer {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  min-width: 200rpx;
+}
+
+.selector-btn, .stats-btn {
+  background: #2196F3;
+  color: white;
   border: none;
-  border-radius: 18rpx;
-  font-size: 28rpx;
-  padding: 12rpx 40rpx;
-  box-shadow: 0 2rpx 8rpx rgba(33,150,243,0.10);
+  border-radius: 20rpx;
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+  transition: all 0.3s ease;
 }
-.result-area {
-  margin-top: 24rpx;
-  background: rgba(255,255,255,0.85);
-  border-radius: 32rpx;
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
-  padding: 32rpx 24rpx;
-  width: 80vw;
-  max-width: 500rpx;
+
+.stats-btn {
+  background: #FF9800;
+}
+
+.selector-btn:active, .stats-btn:active {
+  transform: scale(0.95);
+}
+
+.handwrite-input-display {
+  position: relative;
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  min-height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-text {
+  font-size: 32rpx;
+  color: #333;
   text-align: center;
 }
+
+.canvas-container {
+  flex: 1;
+  background: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.handwrite-canvas {
+  width: 100%;
+  height: 400rpx;
+  border: 2rpx dashed #e0e0e0;
+  border-radius: 12rpx;
+  background: #fafafa;
+  margin-bottom: 20rpx;
+}
+
+.canvas-controls {
+  display: flex;
+  justify-content: space-around;
+  gap: 16rpx;
+}
+
+.control-btn {
+  flex: 1;
+  padding: 20rpx;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  background: #f5f5f5;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.control-btn.primary {
+  background: #4CAF50;
+  color: white;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.recognize-status {
+  text-align: center;
+  margin-top: 16rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 遮罩样式 */
+.mask {
+  position: absolute;
+  top: 140rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 20rpx 20rpx;
+  z-index: 2;
+}
+
+.erase-btn {
+  background: #ffd93d;
+  color: #333;
+  border: none;
+  border-radius: 40rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  box-shadow: 0 6rpx 20rpx rgba(255, 217, 61, 0.4);
+  transition: all 0.3s ease;
+}
+
+.erase-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 12rpx rgba(255, 217, 61, 0.4);
+}
+
+/* 结果区域 */
+.result-area {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.result-area view {
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+
 .answer {
-  color: #43a047;
+  color: #4CAF50;
   font-weight: bold;
   font-size: 36rpx;
 }
+
 .user {
-  color: #039be5;
-  font-size: 32rpx;
+  color: #2196F3;
+  font-weight: bold;
+  font-size: 36rpx;
 }
+
 .correct {
-  color: #ff9800;
-  font-size: 36rpx;
-  margin: 16rpx 0;
+  color: #4CAF50;
+  font-size: 32rpx;
+  font-weight: bold;
+  animation: bounceIn 0.5s ease;
 }
+
 .wrong {
-  color: #e53935;
-  font-size: 36rpx;
-  margin: 16rpx 0;
+  color: #f44336;
+  font-size: 32rpx;
+  font-weight: bold;
+  animation: shake 0.5s ease;
 }
+
 .next-btn {
-  background: linear-gradient(90deg, #fcb69f 0%, #ffecd2 100%);
-  color: #fff;
+  background: #667eea;
+  color: white;
   border: none;
-  border-radius: 24rpx;
+  border-radius: 50rpx;
+  padding: 20rpx 40rpx;
   font-size: 28rpx;
-  padding: 12rpx 40rpx;
-  margin-top: 16rpx;
-  box-shadow: 0 2rpx 8rpx rgba(255,152,0,0.10);
+  margin-top: 20rpx;
+  box-shadow: 0 8rpx 16rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.next-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 8rpx rgba(102, 126, 234, 0.3);
+}
+
+/* 动画效果 */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10rpx);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10rpx);
+  }
+}
+
+/* 响应式适配 */
+@media (max-width: 600rpx) {
+  .canvas-controls {
+    flex-direction: column;
+  }
+  
+  .control-btn {
+    margin-bottom: 12rpx;
+  }
+  
+  .handwrite-canvas {
+    height: 350rpx;
+  }
+}
+
+/* 识别器选择弹窗样式 */
+.recognizer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40rpx;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24rpx;
+  width: 100%;
+  max-width: 600rpx;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  background: #f8f9fa;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 40rpx;
+  color: #999;
+  padding: 0;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:active {
+  background: #f0f0f0;
+}
+
+.recognizer-list {
+  padding: 20rpx;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.recognizer-item {
+  padding: 24rpx;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid #f0f0f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.recognizer-item:last-child {
+  margin-bottom: 0;
+}
+
+.recognizer-item.selected {
+  border-color: #2196F3;
+  background: #f3f8ff;
+}
+
+.recognizer-item:active {
+  transform: scale(0.98);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.item-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.item-check {
+  width: 32rpx;
+  height: 32rpx;
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  font-weight: bold;
+}
+
+.item-desc {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
 } 
